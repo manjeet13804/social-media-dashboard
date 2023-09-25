@@ -1,25 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, CircularProgress } from '@mui/material';
-import { useDispatch ,useSelector} from 'react-redux';
-// import { useDispatch } from 'react-redux';
 import Post from './Post/Post';
-import { getPosts } from '../../redux/reducers/posts';
+import * as api from "../../api/index"
 const Posts = ({ setCurrentId }) => {
-  const dispatch=useDispatch()
-  var posts =useSelector((state=>state.posts))
+  const [posts,setPosts] =useState([])
+  useEffect(()=>{
+    const fetchPosts = async()=> await api.fetchPosts().then(newdata=>setPosts(newdata.data))
+    fetchPosts();
+  },[posts])
  
-console.log(posts.length)
+// console.log(posts)
   return (
-    // !posts.length ? <CircularProgress /> : (
-    //   <Grid className="mainContainer" container alignItems="stretch" spacing={3}>
-    //     {posts.map((post) => (
-    //       <Grid key={post._id} item xs={12} sm={6} md={6}>
-    //         <Post post={post} setCurrentId={setCurrentId} />
-    //       </Grid>
-    //     ))}
-    //   </Grid>
-    // )
-    <></>
+    !posts.length ? <CircularProgress /> : (
+      <Grid className="mainContainer" container alignItems="stretch" spacing={3}>
+        {posts.map((post) => (
+          <Grid key={post._id} item xs={12} sm={6} md={6}>
+            <Post post={post} setCurrentId={setCurrentId} />
+          </Grid>
+        ))}
+      </Grid>
+    )
   );
 };
 

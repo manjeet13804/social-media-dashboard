@@ -12,24 +12,24 @@ const posts = createSlice({
                
       const data = await api.fetchPosts().then(newdata=>newdata.data)
       state=[...data];  
-      console.log(state)
      },
       likePost: async(state, action) => {
-        const data = await api.likePost(action.payload)
+        await api.likePost(action.payload)
         getPosts();
+        
       },
       createPost: async(state, action) => {
-        console.log(state)
-        const data = await api.createPost(action.payload)
+         await api.createPost(action.payload)
         getPosts();
+        console.log(state)
       },
       updatePost: async(state, action) => {
-        const data = await api.updatePost(action.payload)
+       await api.updatePost(action.payload)
         getPosts();
 
       },
       deletePost: async(state, action) => {
-        const data = await api.deletePost(action.payload)
+         await api.deletePost(action.payload)
         getPosts();
 
       },
