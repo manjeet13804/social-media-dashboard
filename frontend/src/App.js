@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, AppBar, Typography, Grow, Grid } from '@mui/material';
 
 import Posts from './components/Posts/Posts';
@@ -11,8 +11,9 @@ const App = () => {
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
 
-  useLayoutEffect(() => {
-    dispatch(getPosts());
+  useEffect(() => {
+    const data=dispatch(getPosts());
+    console.log(data)
   }, [currentId, dispatch]);
 
   return (

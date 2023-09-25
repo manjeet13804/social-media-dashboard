@@ -3,32 +3,34 @@ import * as api from '../../api/index';
 
 const posts = createSlice({
    name: "posts",
-   initialState: { posts: []},
+   initialState:  [],
    reducers: {
     fetchPosts: (state, action) => {
-      console.log(state.posts)
-         return state.posts;
+         return state;
       },
       getPosts: async(state, action) => {
-        const data = await api.fetchPosts().then(arr=>arr.json())
-        console.log(data)
-        // const posts=data.data.map(post=>post);
-        // console.log((posts))
-        // return {...state,posts:[1,2};
+               
+      const data = await api.fetchPosts().then(newdata=>newdata.data)
+      state=[...data];  
+      console.log(state)
      },
-      likePost: (state, action) => {
-        return state.map((post) => (post._id === action.payload._id ? action.payload : post));
+      likePost: async(state, action) => {
+        const data = await api.likePost(action.payload)
+        getPosts();
       },
-      createPost: (state, action) => {
-        console.log(state.posts)
-        return {...state, posts:[...state.posts,action.payload]};
+      createPost: async(state, action) => {
+        console.log(state)
+        const data = await api.createPost(action.payload)
+        getPosts();
       },
-      updatePost: (state, action) => {
-      return state.map((post) => (post._id === action.payload._id ? action.payload : post));
-        
+      updatePost: async(state, action) => {
+        const data = await api.updatePost(action.payload)
+        getPosts();
+
       },
-      deletePost: (state, action) => {
-        return state.filter((post) => post._id !== action.payload);
+      deletePost: async(state, action) => {
+        const data = await api.deletePost(action.payload)
+        getPosts();
 
       },
      
