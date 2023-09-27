@@ -1,5 +1,5 @@
 .root {
-      margin: 2px,
+      margin: 2px;
     }
 
 .paper {
@@ -10,10 +10,13 @@
     flex-wrap:wrap;
     justify-content:center;
   }
+  .form div{
+    margin-bottom: 4px;
+  }
 .fileInput {
     width: 97%;
     margin: 10px 0;
   }
 .buttonSubmit {
-    margin-bottom: 10;
+    margin: 10px 0 !important;
   }

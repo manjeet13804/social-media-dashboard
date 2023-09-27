@@ -12,8 +12,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const data=dispatch(getPosts());
-    console.log(data)
+    dispatch(getPosts());
   }, [currentId, dispatch]);
 
   return (

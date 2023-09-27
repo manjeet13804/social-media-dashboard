@@ -5,9 +5,10 @@ const posts = createSlice({
    name: "posts",
    initialState:  [],
    reducers: {
-    fetchPosts: (state, action) => {
-         return state;
-      },
+    fetchPosts: async(state, action) => {
+      const data = await api.fetchPosts().then(newdata=>newdata.data)
+return data
+   },
       getPosts: async(state, action) => {
                
       const data = await api.fetchPosts().then(newdata=>newdata.data)

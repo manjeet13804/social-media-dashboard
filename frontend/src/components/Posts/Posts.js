@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { Grid, CircularProgress } from '@mui/material';
 import Post from './Post/Post';
 import * as api from "../../api/index"
+
 const Posts = ({ setCurrentId }) => {
   const [posts,setPosts] =useState([])
-  useEffect(()=>{
-    const fetchPosts = async()=> await api.fetchPosts().then(newdata=>setPosts(newdata.data))
-    fetchPosts();
-  },[posts])
  
-// console.log(posts)
+     const fetchPosts = async()=> await api.fetchPosts().then(newdata=>setPosts(newdata.data))
+    fetchPosts();
+
   return (
     !posts.length ? <CircularProgress /> : (
       <Grid className="mainContainer" container alignItems="stretch" spacing={3}>
